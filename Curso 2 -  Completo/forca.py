@@ -152,7 +152,7 @@ def jogar():
         acertou = "_" not in letras_acertadas
         print(letras_acertadas)
 
-    if (acertou):
+    if(acertou):
         imprime_mensagem_vencedor()
     else:
         imprime_mensagem_perdedor(palavra_secreta)
