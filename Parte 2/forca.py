@@ -1,13 +1,15 @@
-import  random
+import random
 
-def jogar():
+
+def imprime_mensagem_abertura():
     print("*********************************")
     print("***Bem vindo ao jogo de Forca!***")
     print("*********************************")
 
+
+def inserir_palavras_secretas():
     arquivo = open("palavras.txt", "r")
     palavras = []
-
 
     for linha in arquivo:
         linha = linha.strip()
@@ -17,8 +19,18 @@ def jogar():
 
     numero = random.randrange(0, len(palavras))
     palavra_secreta = palavras[numero].upper()
+    return palavra_secreta
 
-    letras_acertadas = ["_" for letra in palavra_secreta]
+
+def inicializa_letras_acertadas(palavra):
+    return ["_" for letra in palavra]
+
+
+def jogar():
+    imprime_mensagem_abertura()
+    palavra_secreta = inserir_palavras_secretas()
+
+    letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
 
     enforcou = False
     acertou = False
@@ -26,16 +38,16 @@ def jogar():
 
     print(letras_acertadas)
 
-    #enquanto(True)
-    while(not enforcou and not acertou):
+    # enquanto(True)
+    while (not enforcou and not acertou):
 
         chute = input("Qual letra?")
         chute = chute.strip().upper()
 
-        if(chute in palavra_secreta):
+        if (chute in palavra_secreta):
             index = 0
             for letra in palavra_secreta:
-                if(chute.upper() == letra.upper()):
+                if (chute.upper() == letra.upper()):
                     letras_acertadas[index] = letra
                 index += 1
         else:
@@ -46,11 +58,12 @@ def jogar():
         acertou = "_" not in letras_acertadas
         print(letras_acertadas)
 
-    if(acertou):
+    if (acertou):
         print("Você ganhou!!")
     else:
         print("Você perdeu!!")
     print("Fim do jogo")
 
-if(__name__ == "__main__"):
+
+if (__name__ == "__main__"):
     jogar()
